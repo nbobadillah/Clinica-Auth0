@@ -4,10 +4,10 @@
 <div class="content">
     <div class="">
         <div class="page-header-title">
-            <h4 class="page-title">Pacientes</h4>
+            <h4 class="page-title">Resultados</h4>
             <div style="text-align:right;">
                 <button type="button" class="btn btn-success waves-effect waves-light"
-                        onClick=" window.location.href='/pacientecreate' " style="text-align:center;">+
+                        onClick=" window.location.href='/resultadocreate' " style="text-align:center;">+
                 </button>
             </div>
         </div>
@@ -21,23 +21,24 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
+
                     <table class="table table-hover">
                         <thead>
                         <tr style="color:#0E2EB0">
-                            <th>Cedula</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Name</th>
+                            <th>Resultados</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% for paciente in paciente_list %}
+                        {% for resultado in resultado_list %}
                         <tr>
-                            <td>{{ paciente.cedula }}</td>
-                            <td>{{ paciente.correo }}</td>
-                            <td>{{ paciente.celular }}</td>
-                            <td>{{ paciente.name }}</td>
+                            <td class="d-flex justify-content-between">
+                                {{ resultado.name }}
+                                <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        onClick=" window.location.href='/resultado/{{ resultado.id }}' ">
+                                    Detail
+                                </button>
+                            </td>
                         </tr>
                         {% endfor %}
 
@@ -56,5 +57,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

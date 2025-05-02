@@ -3,31 +3,31 @@ from .forms import PacienteForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .logic.logic_paciente import create_measurement, get_measurements
+from .logic.logic_paciente import create_paciente, get_pacientes
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def measurement_list(request):
-    measurements = get_measurements()
+def paciente_list(request):
+    pacientes = get_pacientes()
     context = {
-        'measurement_list': measurements
+        'paciente_list': pacientes
     }
-    return render(request, 'Measurement/measurements.html', context)
+    return render(request, 'Paciente/pacientes.html', context)
 
-def measurement_create(request):
+def paciente_create(request):
     if request.method == 'POST':
-        form = MeasurementForm(request.POST)
+        form = PacienteForm(request.POST)
         if form.is_valid():
-            create_measurement(form)
-            messages.add_message(request, messages.SUCCESS, 'Measurement create successful')
-            return HttpResponseRedirect(reverse('measurementList'))
+            create_paciente(form)
+            messages.add_message(request, messages.SUCCESS, 'paciente create successful')
+            return HttpResponseRedirect(reverse('pacienteList'))
         else:
             print(form.errors)
     else:
-        form = MeasurementForm()
+        form = PacienteForm()
 
     context = {
         'form': form,
     }
 
-    return render(request, 'Measurement/measurementCreate.html', context)
+    return render(request, 'Paciente/pacienteCreate.html', context)
